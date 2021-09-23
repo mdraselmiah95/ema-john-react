@@ -1,48 +1,32 @@
 import React from "react";
 import "./Cart.css";
 const Cart = (props) => {
-  //   console.log(props.cart);
   const { cart } = props;
-  const totalReducer = (previous, product) => previous + product.price;
-  const total = cart.reduce(totalReducer, 0);
-  //   let total = 0;
-  //   for (const product of cart) {
-  //     total = total + product.price;
-  //   }
 
-  const shipping = 15;
+  // const totalReducer = (previous, product) => previous + product.price;
+  // const total = cart.reduce(totalReducer, 0);
+  let totalQuantity = 0;
+  let total = 0;
+  for (const product of cart) {
+    if (!product.quantity) {
+      product.quantity = 1;
+    }
+    total = total + product.price * product.quantity;
+    totalQuantity = totalQuantity + product.quantity;
+  }
+
+  const shipping = total > 0 ? 15 : 0;
   const tax = (total + shipping) * 10;
   const grandTotal = total + shipping + tax;
   return (
-    <div>
-      <h3>Order summary</h3>
-      <h5>Items Ordered: {props.cart.length}</h5>
+    <div className="cart-container">
+      <h3>Order Summary</h3>
+      <h5>Items Ordered: {totalQuantity}</h5>
       <br />
-      {/* <p>Total: {total.toFixed(2)}</p> */}
-      <div>
-        <table style={{ width: "100%" }}>
-          <tr>
-            <td>Items: {props.cart.length}</td>
-            <td>$</td>
-          </tr>
-          <tr>
-            <td>Shipping & Handling:</td>
-            <td>${shipping}</td>
-          </tr>
-          <tr>
-            <td>Total before tax:</td>
-            <td>$</td>
-          </tr>
-          <tr>
-            <td>Estimated Tax:</td>
-            <td>$ {tax.toFixed(2)}</td>
-          </tr>
-          <tr>
-            <td>Order Total:</td>
-            <td>$ {grandTotal.toFixed(2)}</td>
-          </tr>
-        </table>
-      </div>
+      <p>Total: {total.toFixed(2)}</p>
+      <p>Shipping: {shipping}</p>
+      <p>tax: {tax.toFixed(2)}</p>
+      <p>Grand Total: {grandTotal.toFixed(2)}</p>
     </div>
   );
 };
