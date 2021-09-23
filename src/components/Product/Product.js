@@ -5,11 +5,11 @@ const Product = (props) => {
   const { name, category, stock, star, img, seller, price } = props.product;
   return (
     <div className="product">
-      <div>
+      <div className="product-img">
         <img src={img} alt="product" />
       </div>
       <div>
-        <h4>{name}</h4>
+        <h4 className="product-name">{name}</h4>
         <p>
           <small>by:{seller}</small>
         </p>
