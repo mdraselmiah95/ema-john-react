@@ -3,9 +3,8 @@ import "./Cart.css";
 const Cart = (props) => {
   //   console.log(props.cart);
   const { cart } = props;
-
-  const total = cart.reduce((previous, product) => previous + product, 0);
-
+  const totalReducer = (previous, product) => previous + product.price;
+  const total = cart.reduce(totalReducer, 0);
   //   let total = 0;
   //   for (const product of cart) {
   //     total = total + product.price;
@@ -15,7 +14,7 @@ const Cart = (props) => {
       <h3>Order summary</h3>
       <h5>Items Ordered: {props.cart.length}</h5>
       <br />
-      <p>Total: {total}</p>
+      <p>Total: {total.toFixed(2)}</p>
     </div>
   );
 };
