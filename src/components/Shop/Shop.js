@@ -18,7 +18,7 @@ const Shop = () => {
   }, []);
 
   useEffect(() => {
-    console.log("Local Storage called");
+    console.log("Local Storage Cart called");
     const savedCart = getStoredCart();
     for (const key in savedCart) {
       // console.log(products);
