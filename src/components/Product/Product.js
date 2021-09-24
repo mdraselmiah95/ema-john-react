@@ -20,6 +20,7 @@ const Product = (props) => {
         <p>
           <small>only {stock} left in stock - order soon</small>
         </p>
+        <p>{category}</p>
         <button
           onClick={() => props.handleAddToCart(props.product)}
           className="regular-btn"
