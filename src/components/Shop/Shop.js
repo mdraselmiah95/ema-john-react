@@ -19,11 +19,16 @@ const Shop = () => {
 
   useEffect(() => {
     console.log("Local Storage Cart called");
-    const savedCart = getStoredCart();
-    for (const key in savedCart) {
-      // console.log(products);
-      const addedProduct = products.find((product) => product.key === key);
-      console.log(key, addedProduct);
+    if (products.length) {
+      const savedCart = getStoredCart();
+      const storedCart = [];
+      for (const key in savedCart) {
+        // console.log(products);
+        const addedProduct = products.find((product) => product.key === key);
+        storedCart.push(addedProduct);
+        console.log(key, addedProduct);
+      }
+      setCart(storedCart);
     }
   }, [products]);
 
