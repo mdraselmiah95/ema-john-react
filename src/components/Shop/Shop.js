@@ -8,12 +8,17 @@ const Shop = () => {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
+    console.log("product API called");
     fetch("./products.JSON")
       .then((res) => res.json())
-      .then((data) => setProducts(data));
+      .then((data) => {
+        setProducts(data);
+        console.log("Products received");
+      });
   }, []);
 
   useEffect(() => {
+    console.log("Local Storage called");
     const savedCart = getStoredCart();
     for (const key in savedCart) {
       // console.log(products);
